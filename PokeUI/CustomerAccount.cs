@@ -1,4 +1,6 @@
+using PokeBL;
 using PokeModel;
+
 namespace PokeUI
 {
 
@@ -6,6 +8,17 @@ namespace PokeUI
     {
 
         private static Customer _newCustomer = new Customer();
+
+        private IPokemonBL _pokeBL;
+
+        public CustomerAccount()
+        {
+        }
+
+        public CustomerAccount(IPokemonBL c_pokeBl)//THis is supposed to be like a constructor so it needs to have the same name as the class
+        {
+            _pokeBL = c_pokeBl;
+        }
 
         public void Display()
         {
@@ -40,9 +53,11 @@ namespace PokeUI
                     return "CustomerAccount";
 
                 case "4":
+                    _pokeBL.AddCustomer(_newCustomer);
                     return "MainMenu";
 
                 case "5":
+
                     return "MainMenu";
                 default:
                     Console.WriteLine("Please enter a valid response");

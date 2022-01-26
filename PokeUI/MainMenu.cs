@@ -6,12 +6,8 @@ namespace PokeUI
         {
 
             Console.WriteLine("Welcome to Furr Babies pet supplies store!");
-            Console.WriteLine("Do you have an account with us?");
-            Console.WriteLine("1: yes");
-            Console.WriteLine("2: no");
-
-
-
+            Console.WriteLine("If you are new to our Store, please create an account!");
+            Console.WriteLine("If you already have an account you are welcome to continue to the Product Menu");
 
         }
 
@@ -22,10 +18,10 @@ namespace PokeUI
 
             switch (mainMenuSelection)
             {
-                case "yes":
-                    return "Product";
+                case "Products":
+                    return "ProductsMenu";
 
-                case "no":
+                case "CustomerAccount":
                     return "CustomerAccount";
                 default:
                     Console.WriteLine("Please input a valid response!");
