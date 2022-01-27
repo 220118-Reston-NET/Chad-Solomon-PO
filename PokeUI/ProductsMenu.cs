@@ -21,28 +21,28 @@ namespace PokeUI
 
             switch (productMenuSelection)
             {
-                case "Leashes":
+                case "1":
                     //IMenu _newLeashMenu = new LeashMenu();
                     return "LeashMenu";
 
 
-                case "Collars":
+                case "2":
                     //IMenu _newCollarMenu = new CollarMenu();
                     return "CollarMenu";
 
-                case "Toys":
+                case "3":
                     //IMenu _newToyMenu = new ToyMenu();
-                    return "ToysMenu";
+                    return "ToyMenu";
 
-                case "Treats":
+                case "4":
                     //IMenu _newTreatMenu = new TreatMenu();
-                    return "Treatsmenu";
+                    return "TreatMenu";
 
                 default:
                     Console.WriteLine("Please input a valid response!");
                     Console.WriteLine("Please Enter to continue!");
                     Console.ReadLine();
-                    return "MainMenu";
+                    return "ProductsMenu";
             }
 
         }
