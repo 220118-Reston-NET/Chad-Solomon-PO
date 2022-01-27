@@ -1,5 +1,4 @@
-﻿
-namespace PokeModel
+﻿namespace PokeModel
 {
     public class Customer
     {
