@@ -4,7 +4,7 @@ namespace PokeUI
 
     public class TreatMenu : IMenu
     {
-        IMenu _newTreat = new TreatMenu();
+        //IMenu _newTreat = new TreatMenu();
 
         public void Display()
         {
@@ -29,17 +29,17 @@ namespace PokeUI
                 case "1":
                     return "LeashMenu";
 
-                case "Collars":
+                case "2":
                     return "CollarMenu";
-                case "Toys":
+                case "3":
                     return "ToyMenu";
-                case "Treats":
-                    return "TreatsMenu";
+                case "4":
+                    return "TreatMenu";
                 default:
                     Console.WriteLine("Please input a valid response!");
                     Console.WriteLine("Please Enter to continue!");
                     Console.ReadLine();
-                    return "MainMenu";
+                    return "LeashMenu";
             }
 
 
