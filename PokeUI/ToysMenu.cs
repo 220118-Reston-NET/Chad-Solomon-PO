@@ -3,7 +3,7 @@ namespace PokeUI
 {
     public class ToyMenu : IMenu
     {
-        IMenu _newToy = new ToyMenu();
+        //IMenu _newToy = new ToyMenu();
 
         public void Display()
         {
@@ -27,17 +27,17 @@ namespace PokeUI
                 case "1":
                     return "LeashMenu";
 
-                case "Collars":
+                case "2":
                     return "CollarMenu";
-                case "Toys":
+                case "3":
                     return "ToyMenu";
-                case "Treats":
-                    return "TreatsMenu";
+                case "4":
+                    return "TreatMenu";
                 default:
                     Console.WriteLine("Please input a valid response!");
                     Console.WriteLine("Please Enter to continue!");
                     Console.ReadLine();
-                    return "MainMenu";
+                    return "ToyMenu";
             }
 
 
