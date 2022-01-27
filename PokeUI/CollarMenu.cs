@@ -28,17 +28,17 @@ namespace PokeUI
                 case "1":
                     return "LeashMenu";
 
-                case "Collars":
+                case "2":
                     return "CollarMenu";
-                case "Toys":
+                case "3":
                     return "ToyMenu";
-                case "Treats":
+                case "4":
                     return "TreatsMenu";
                 default:
                     Console.WriteLine("Please input a valid response!");
                     Console.WriteLine("Please Enter to continue!");
                     Console.ReadLine();
-                    return "MainMenu";
+                    return "CollarMenu";
             }
 
 
