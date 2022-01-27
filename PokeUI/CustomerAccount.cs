@@ -11,9 +11,9 @@ namespace PokeUI
 
         private IPokemonBL _pokeBL;
 
-        public CustomerAccount()
-        {
-        }
+        // public CustomerAccount()
+        // {
+        // }
 
         public CustomerAccount(IPokemonBL c_pokeBl)//THis is supposed to be like a constructor so it needs to have the same name as the class
         {
@@ -53,15 +53,26 @@ namespace PokeUI
                     return "CustomerAccount";
 
                 case "4":
-                    _pokeBL.AddCustomer(_newCustomer);
-                    return "MainMenu";
+                    try
+                    {
+                        _pokeBL.AddCustomer(_newCustomer);
+                    }
+                    catch (System.Exception exc)
+                    {
+                        Console.WriteLine(exc.Message);
+                        Console.WriteLine("Please press Enter to continue");
+                        Console.ReadLine();
+                    }
+                    return "ProductsMenu";
+
 
                 case "5":
 
-                    return "MainMenu";
+                    return "ProductsMenu";
+
                 default:
                     Console.WriteLine("Please enter a valid response");
-                    return "MianMenu";
+                    return "ProductsMenu";
 
 
             }
