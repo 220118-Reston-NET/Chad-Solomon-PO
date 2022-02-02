@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PokeBL;
 using PokeDL;
-using PokeModel;
 using PokeUI;
 
 
@@ -32,6 +31,13 @@ dotnet add package Serilog.Sinks.File
 dotnet add package
 dotnet add package Serilog
 
+
+***** Validation Ideas for the Model
+>We can add inventory as a model with the customer selecting a quantitiy of the item
+    >and the validation would be that they atleast select 1 quantitiy 
+> I could add a few more things for the customer to add when they create a profile
+    >like a phone number
+
 */
 
 while (repeat)
@@ -52,6 +58,10 @@ while (repeat)
             menu = new CustomerAccount(new CustomerBL(new Repository()));
             break;
 
+        case "MainMenu":
+            menu = new MainMenu();
+            break;
+
 
         case "LeashMenu":
             menu = new LeashMenu();
@@ -67,6 +77,10 @@ while (repeat)
 
         case "TreatMenu":
             menu = new TreatMenu();
+            break;
+
+        case "SearchCustomerMenu":
+            menu = new SearchCustomerMenu(new CustomerBL(new Repository()));
             break;
 
         default:
