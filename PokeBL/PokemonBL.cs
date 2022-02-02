@@ -24,11 +24,24 @@ namespace PokeBL
 
         //=========================
 
-        public Customer AddCustomer(Customer c_name)
+        public Customer AddCustomer(Customer c_customer)
         {
-            return _repo.AddCustomer(c_name);
+            return _repo.AddCustomer(c_customer);
 
         }
 
+        public List<Customer> SearchCustomer(string c_customer)
+        {
+            List<Customer> listOfCustomers = _repo.GetAllCustomers();
+
+            //LINQ Library
+            //.Where() filters a sequence of values based on a predicate
+            //.ToList used with .Where or other methods from the IEnumerable class to place the out from the IEnumerable into a list.
+            return listOfCustomers
+                    .Where(cust => cust.Name.Contains(c_customer))
+                    .ToList();
+
+
+        }
     }
 }
