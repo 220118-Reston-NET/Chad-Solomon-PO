@@ -4,6 +4,12 @@ namespace PokeDL
 {
     public class SQLProductRepository : IProductRepo
     {
+        private readonly string _connectionStrings;
+        public SQLProductRepository(string p_connectionStrings)
+        {
+
+            _connectionStrings = p_connectionStrings;
+        }
         public Product AddProduct(Product c_product)
         {
             string sqlQuery = @"insert into Product values (@prodName, @Description, @prodPrice)";
@@ -54,6 +60,44 @@ namespace PokeDL
                 }
             }
             return listOfProduct;
+        }
+
+        public List<Product> GetAllProductsByStoreID(int storeID)
+        {
+            string sqlQuery = @"select p.prodID, p.prodName, p.prodDescription, p.prodPrice  
+                                from Product p, StoreInventory s 
+                                where p.prodID = s.prodID and s.storeID = @storeID";
+
+            List<Product> listProducts = new List<Product>();
+
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
+            {
+
+                con.Open();
+
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+
+                command.Parameters.AddWithValue("@storeID", storeID);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    listProducts.Add(new Product()
+                    {
+
+                        ID = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Description = reader.GetString(2),
+                        Price = reader.GetInt32(3)
+
+
+                    });
+                }
+            }
+
+            return listProducts;
         }
     }
 }

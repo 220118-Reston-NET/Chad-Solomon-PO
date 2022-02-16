@@ -4,11 +4,17 @@ namespace PokeDL
 {
     public class SQLRepository : IRepository
     {
+        private readonly string _connectionStrings;
+        public SQLRepository(string p_connectionStrings)
+        {
+
+            _connectionStrings = p_connectionStrings;
+        }
         public Customer AddCustomer(Customer c_customer)
         {
             string sqlQuery = @"insert into Customer values (@custName, @custAddress, @custEmail)";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -87,7 +93,7 @@ namespace PokeDL
 
             string sqlQuery = @"select * from Customer";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 

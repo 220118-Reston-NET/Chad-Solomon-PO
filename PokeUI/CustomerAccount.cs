@@ -7,7 +7,7 @@ namespace PokeUI
     public class CustomerAccount : IMenu
     {
 
-        private static Customer _newCustomer = new Customer();
+        public static Customer _newCustomer = new Customer();
 
         private IPokemonBL _pokeBL;
 
@@ -23,9 +23,9 @@ namespace PokeUI
         public void Display()
         {
             Console.WriteLine("Please enter your information!");
-            Console.WriteLine("[1] Name - " + _newCustomer._name);
-            Console.WriteLine("[2] Address - " + _newCustomer._address);
-            Console.WriteLine("[3] Email - " + _newCustomer._email);
+            Console.WriteLine("[1] Name - " + _newCustomer.Name);
+            Console.WriteLine("[2] Address - " + _newCustomer.Address);
+            Console.WriteLine("[3] Email - " + _newCustomer.Email);
             Console.WriteLine("[4] Save");
             Console.WriteLine("[5] Go back to MainMenu");
         }
@@ -38,41 +38,52 @@ namespace PokeUI
             switch (userInput)
             {
                 case "1":
+                    Log.Information("Customer enter their name\n " + _newCustomer.Name);
                     Console.WriteLine("Please enter your name");
-                    _newCustomer._name = Console.ReadLine();
+                    _newCustomer.Name = Console.ReadLine();
+                    Log.Information("Entering Customer Name was succesful");
+
                     return "CustomerAccount";
 
                 case "2":
+                    Log.Information("Customer entering their address\n " + _newCustomer.Address);
                     Console.WriteLine("Please enter your street address!");
-                    _newCustomer._address = Console.ReadLine();
+                    _newCustomer.Address = Console.ReadLine();
+                    Log.Information("Entering Customer Address was succesful");
                     return "CustomerAccount";
 
                 case "3":
+                    Log.Information("Customer entering their email");
                     Console.WriteLine("Please enter your email address!");
-                    _newCustomer._email = Console.ReadLine();
+                    _newCustomer.Email = Console.ReadLine();
+                    Log.Information("Entering Customer email was succesful");
                     return "CustomerAccount";
 
                 case "4":
                     try
                     {
+                        Log.Information("Adding Customer Profile");
                         _pokeBL.AddCustomer(_newCustomer);
+                        Log.Information("Customer Account creation succesful");
                     }
                     catch (System.Exception exc)
                     {
+                        Log.Warning("Customer Account was not created");
                         Console.WriteLine(exc.Message);
                         Console.WriteLine("Please press Enter to continue");
                         Console.ReadLine();
                     }
-                    return "ProductsMenu";
+                    Log.Information("User is returning to main menu after creating an account");
+                    return "MainMenu";
 
 
                 case "5":
-
-                    return "ProductsMenu";
+                    Log.Information("Returning to Main Menu from Customer account menu");
+                    return "MainMenu";
 
                 default:
                     Console.WriteLine("Please enter a valid response");
-                    return "ProductsMenu";
+                    return "MainMenu";
 
 
             }

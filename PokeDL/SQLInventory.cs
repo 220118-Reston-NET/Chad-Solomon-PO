@@ -42,9 +42,9 @@ namespace PokeDL
 
             List<Inventory> listOfProduct = new List<Inventory>();
 
-            // string sqlQuery = @"select * from StoreInventory si";
+            string sqlQuery = @"select * from StoreInventory si";
             // List<Inventory> listOfProduct = new List<Inventory>();
-            string sqlQuery = @"select sf.storeName, p.prodName, p.prodID, p.prodDescription, si.Quantity from StoreFront sf inner join StoreInventory si on sf.storeID = si.storeID inner join Product p on p.prodID = si.prodID";
+            // string sqlQuery = @"select sf.storeName, p.prodName, p.prodID, p.prodDescription, si.Quantity from StoreFront sf inner join StoreInventory si on sf.storeID = si.storeID inner join Product p on p.prodID = si.prodID";
 
             // string sqlQuery = @"select sf.storeName, p.prodName, si.Quantity from StoreFront sf 
             //     inner join StoreInventory si on sf.storeID = si.storeID 
@@ -64,14 +64,14 @@ namespace PokeDL
                 {
                     listOfProduct.Add(new Inventory()
                     {
-                        // _storeID = reader.GetInt32(0),
-                        // _productID = reader.GetInt32(1),
-                        // Quantity = reader.GetInt32(2)
-                        StoreName = reader.GetString(0),
-                        ProdName = reader.GetString(1),
-                        _productID = reader.GetInt32(2),
-                        Description = reader.GetString(3),
-                        Quantity = reader.GetInt32(4)
+                        _storeID = reader.GetInt32(0),
+                        _productID = reader.GetInt32(1),
+                        Quantity = reader.GetInt32(2)
+                        // StoreName = reader.GetString(0),
+                        // ProdName = reader.GetString(1),
+                        // _productID = reader.GetInt32(2),
+                        // Description = reader.GetString(3),
+                        // Quantity = reader.GetInt32(4)
                         //Price = reader.GetInt32(3)
 
                     });
