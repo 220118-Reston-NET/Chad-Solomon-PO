@@ -20,6 +20,11 @@ namespace PokeBL
 
         }
 
+        public List<Product> GetAllProductByStoreID(int storeID)
+        {
+            return _orepo.GetAllProductsByStoreID(storeID);
+        }
+
         public List<Product> SearchProduct(string c_product)
         {
             List<Product> listOfProduct = _orepo.GetAllProduct();

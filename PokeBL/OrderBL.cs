@@ -15,20 +15,28 @@ namespace PokeBL
         }
 
         //public void AddOrder(Order _custID, Order _orderLocation, LineItem _cart)
-        public void AddOrder(int _orderLocation, int _price, int _custID)
+        public void AddOrder(int _orderLocation, int _price, int _custID, List<LineItems> _cart)
         {
-            _orderRepo.AddOrder(_orderLocation, _price, _custID);
+            _orderRepo.AddOrder(_orderLocation, _price, _custID, _cart);
 
         }
 
-        // public List<Order> SearchOrder(ng c_nam)
+        public List<Order> SearchOrder(int custID)
+        {
+
+            List<Order> listOfOrder = _orderRepo.GetAllOrder(custID);
+
+            return listOfOrder
+                .Where(order => order._custID == custID)
+                .ToList();
+        }
+
+        // public List<Order> GetAllOrder(int custID)
         // {
 
-        //     List<Order> listOfOrder = _orderRepo.GetAllOrder();
+        //     List<Order> listOrders = new List<Order>();
 
-        //     return listOfOrder
-        //         .Where(order => order._custName.Contains(c_name))
-        //         .ToList();
+        //     return listOrders;
         // }
 
     }

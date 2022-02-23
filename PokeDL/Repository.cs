@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace PokeDL
 {
 
-    public class Repository : IRepository
+    public class Repository
     {
         private string _filepath = "../PokeDL/Database/";
         private string? _jsonString;

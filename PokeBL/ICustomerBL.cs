@@ -4,9 +4,12 @@ namespace PokeBL
 {
     public interface IPokemonBL
     {
-        public Customer AddCustomer(Customer c_name);
+        Customer AddCustomer(Customer c_name);
 
-        public List<Customer> SearchCustomer(int c_id);
+        List<Customer> SearchCustomer(int c_id);
+
+        List<Customer> GetAllCustomer();
+        Customer UpdateCustomer(Customer p_cust);
     }
 
 }

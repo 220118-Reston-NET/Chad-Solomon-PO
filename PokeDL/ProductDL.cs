@@ -2,7 +2,7 @@ using System.Text.Json;
 using PokeModel;
 namespace PokeDL
 {
-    public class ProductDL : IProductRepo
+    public class ProductDL
     {
         private string _filepath = "../PokeDL/Database/";
         private string? _jsonString;

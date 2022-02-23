@@ -4,9 +4,11 @@ namespace PokeBL
     public interface IOrderBL
     {
 
-        public void AddOrder(int _orderLocation, int _price, int _custID);
+        void AddOrder(int _orderLocation, int _price, int _custID, List<LineItems> _cart);
 
-        // public List<Order> SearchOrder(string c_name);
+        //List<Order> GetAllOrder(int custID);
+
+        List<Order> SearchOrder(int custID);
     }
 
 

@@ -14,7 +14,7 @@ namespace PokeDL
         {
             string sqlQuery = @"insert into Product values (@prodName, @Description, @prodPrice)";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -38,7 +38,7 @@ namespace PokeDL
 
             string sqlQuery = @"select * from Product";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 

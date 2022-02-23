@@ -3,9 +3,11 @@ namespace PokeBL
 {
     public interface IProductBL
     {
-        public Product AddProduct(Product c_product);
+        Product AddProduct(Product c_product);
 
-        public List<Product> SearchProduct(string c_product);
+        List<Product> SearchProduct(string c_product);
+
+        List<Product> GetAllProductByStoreID(int storeID);
 
 
     }

@@ -5,7 +5,7 @@ namespace PokeModel
     public class StoreFront
     {
 
-        private int _storeID;
+        public int _storeID;
         public int StoreID
         {
             get { return _storeID; }
@@ -58,38 +58,38 @@ namespace PokeModel
             }
         }
 
-        private List<Product> _storeInventory;
-        public List<Product> Inventory
-        {
+        // private List<Product> _storeInventory;
+        // public List<Product> Inventory
+        // {
 
-            get { return _storeInventory; }
+        //     get { return _storeInventory; }
 
-            set
-            {
+        //     set
+        //     {
 
-                if (value != null)
-                {
+        //         if (value != null)
+        //         {
 
-                    _storeInventory = value;
-                }
-            }
-        }
-        private List<Order> _custOrders;
-        public List<Order> CustomerOrder
-        {
+        //             _storeInventory = value;
+        //         }
+        //     }
+        // }
+        // private List<Order> _custOrders;
+        // public List<Order> CustomerOrder
+        // {
 
-            get { return _custOrders; }
+        //     get { return _custOrders; }
 
-            set
-            {
+        //     set
+        //     {
 
-                if (value != null)
-                {
+        //         if (value != null)
+        //         {
 
-                    _custOrders = value;
-                }
-            }
-        }
+        //             _custOrders = value;
+        //         }
+        //     }
+        // }
 
         // public StoreFront()
         // {
@@ -104,6 +104,11 @@ namespace PokeModel
         //     {
         //     new Order()
         //     };
+        // }
+        // public StoreFront()
+        // {
+
+        //     _storeID = 0;
         // }
 
         public override string ToString()

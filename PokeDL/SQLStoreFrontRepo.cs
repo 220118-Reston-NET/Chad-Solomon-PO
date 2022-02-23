@@ -4,12 +4,19 @@ namespace PokeDL
 {
     public class SQLStoreFrontRepo : IStoreFrontRepo
     {
+
+        private readonly string _connectionStrings;
+        public SQLStoreFrontRepo(string p_connectionStrings)
+        {
+
+            _connectionStrings = p_connectionStrings;
+        }
         public StoreFront AddStoreFront(StoreFront s_name)
         {
 
             string sqlQuery = @"insert into StoreFront values (@storeName, @storeAddress)";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -69,7 +76,7 @@ namespace PokeDL
 
             string sqlQuery = @"select * from StoreFront";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
 
                 con.Open();
@@ -84,7 +91,7 @@ namespace PokeDL
 
                     listOfStoreFront.Add(new StoreFront()
                     {
-                        _storeID = reader.GetInt32(0),
+                        StoreID = reader.GetInt32(0),
                         StoreName = reader.GetString(1),
                         StoreAddress = reader.GetString(2)
 

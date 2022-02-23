@@ -84,7 +84,7 @@ namespace PokeModel
 
         public override string ToString()
         {
-            return $"Store Name: {_storeName}\nStore ID: {_storeID}\nStore Location: {StoreLocation}\nOrder ID: {_orderID}\n";
+            return $"Store ID: {_storeID}\nOrder ID: {_orderID}\n";
         }
 
 

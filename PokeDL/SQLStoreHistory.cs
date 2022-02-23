@@ -19,9 +19,7 @@ namespace PokeDL
 
             string sqlQuery = @"select * from Store_Order 
                                 where storeID = @storeID";
-            /*select sf.storeName, sf.storeID, sf.storeAddress, o.orderID from StoreFront sf 
-inner join Store_Order so on sf.storeID = so.storeID 
-inner join Orders o on o.orderID = so.orderID*/
+            /**/
 
 
             using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))

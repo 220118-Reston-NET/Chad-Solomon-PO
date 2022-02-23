@@ -19,6 +19,17 @@ namespace PokeBL
             _irepo.AddInventory(_productID);
         }
 
+        public List<Inventory> GetAllInventory()
+        {
+
+            return _irepo.GetAllInventory();
+        }
+
+        public List<Inventory> GetAllInventoryByStoreID(int storeID)
+        {
+            return GetAllInventory().FindAll(p => p.StoreID == storeID);
+        }
+
         // public List<Inventory> GetAllInventory()
         // {
 
@@ -34,7 +45,7 @@ namespace PokeBL
             List<Inventory> _inventory = _irepo.GetAllInventory();
 
             return _inventory
-                .Where(store => store._productID == p_id)
+                .Where(store => store.ProductID == p_id)
                 .ToList();
         }
 

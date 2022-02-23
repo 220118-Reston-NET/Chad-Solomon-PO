@@ -5,12 +5,12 @@ namespace PokeDL
     public class SQLInventory : IInventoryRepo
     {
 
-        // private readonly string _connectionStrings;
-        // public SQLInventory(string p_connectionStrings)
-        // {
+        private readonly string _connectionStrings;
+        public SQLInventory(string p_connectionStrings)
+        {
 
-        //     _connectionStrings = p_connectionStrings;
-        // }
+            _connectionStrings = p_connectionStrings;
+        }
 
         public void AddInventory(int prodID)
         {
@@ -21,7 +21,7 @@ namespace PokeDL
             //     inner join StoreInventory si on sf.storeID = si.storeID 
             //     inner join Product p on p.prodID = si.prodID";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -40,22 +40,30 @@ namespace PokeDL
         public List<Inventory> GetAllInventory()
         {
 
+
             List<Inventory> listOfProduct = new List<Inventory>();
 
-            string sqlQuery = @"select * from StoreInventory si";
-            // List<Inventory> listOfProduct = new List<Inventory>();
+            //string sqlQuery = @"select * from StoreInventory si";
+
             // string sqlQuery = @"select sf.storeName, p.prodName, p.prodID, p.prodDescription, si.Quantity from StoreFront sf inner join StoreInventory si on sf.storeID = si.storeID inner join Product p on p.prodID = si.prodID";
+
+            string sqlQuery = @"select sf.storeID, sf.storeName, p.prodID, p.prodName, p.prodDescription, p.prodPrice, si.Quantity from StoreFront sf 
+                inner join StoreInventory si on sf.storeID = si.storeID 
+                inner join Product p on p.prodID = si.prodID";
 
             // string sqlQuery = @"select sf.storeName, p.prodName, si.Quantity from StoreFront sf 
             //     inner join StoreInventory si on sf.storeID = si.storeID 
             //     inner join Product p on p.prodID = si.prodID";
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
 
                 con.Open();
 
+
+
                 SqlCommand command = new SqlCommand(sqlQuery, con);
+
 
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -64,15 +72,15 @@ namespace PokeDL
                 {
                     listOfProduct.Add(new Inventory()
                     {
-                        _storeID = reader.GetInt32(0),
-                        _productID = reader.GetInt32(1),
-                        Quantity = reader.GetInt32(2)
-                        // StoreName = reader.GetString(0),
-                        // ProdName = reader.GetString(1),
-                        // _productID = reader.GetInt32(2),
-                        // Description = reader.GetString(3),
-                        // Quantity = reader.GetInt32(4)
-                        //Price = reader.GetInt32(3)
+                        // _storeID = reader.GetInt32(0),
+                        // _productID = reader.GetInt32(1),
+                        StoreID = reader.GetInt32(0),
+                        StoreName = reader.GetString(1),
+                        ProductID = reader.GetInt32(2),
+                        ProdName = reader.GetString(3),
+                        Description = reader.GetString(4),
+                        Price = reader.GetInt32(5),
+                        Quantity = reader.GetInt32(6)
 
                     });
 

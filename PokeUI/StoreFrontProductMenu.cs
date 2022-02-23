@@ -139,10 +139,12 @@ namespace PokeUI
                     }
 
 
-
+                    //Originally I was going to add the update lineitems here but I need the order id so it will have to be 
+                    // done after the order is placed
                     try
                     {
                         _orderBL.AddOrder(PlaceOrderMenu._selectedStoreFront._storeID, TotalPrice(_cart), PlaceOrderMenu._selectedCust._custID, _cart);
+
                         Log.Information("User Succesfully placed their order");
                         Console.WriteLine("Place order was succesful!");
                         Console.WriteLine("press enter to return to the main menu");

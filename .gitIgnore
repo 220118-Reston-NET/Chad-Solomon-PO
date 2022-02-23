@@ -1,2 +1,5 @@
 bin
 obj
+PokeUI/appsetting.json
+.vscode
+publish

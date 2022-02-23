@@ -8,10 +8,13 @@ namespace PokeDL
     */
     public interface IRepository
     {
-        public Customer AddCustomer(Customer c_name);
+        Customer AddCustomer(Customer c_name);
 
 
-        public List<Customer> GetAllCustomers();
+        List<Customer> GetAllCustomers();
+
+        Customer UpdateCustomer(Customer p_cust);
+
 
 
 

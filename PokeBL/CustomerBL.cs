@@ -30,6 +30,11 @@ namespace PokeBL
 
         }
 
+        public List<Customer> GetAllCustomer()
+        {
+            return _repo.GetAllCustomers();
+        }
+
         public List<Customer> SearchCustomer(int c_id)
         {
             List<Customer> listOfCustomers = _repo.GetAllCustomers();
@@ -41,6 +46,13 @@ namespace PokeBL
                     .Where(cust => cust._custID == c_id)
                     .ToList();
 
+
+        }
+
+
+        public Customer UpdateCustomer(Customer p_cust)
+        {
+            return _repo.UpdateCustomer(p_cust);
 
         }
     }

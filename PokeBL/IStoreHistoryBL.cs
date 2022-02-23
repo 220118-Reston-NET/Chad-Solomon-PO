@@ -4,6 +4,6 @@ namespace PokeBL
 {
     public interface IStoreHistory
     {
-        public List<StoreOrder> SearchStoreHistory(string s_name);
+        public List<StoreOrder> SearchStoreHistory(int storeID);
     }
 }

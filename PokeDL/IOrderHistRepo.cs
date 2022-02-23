@@ -4,7 +4,7 @@ namespace PokeDL
     public interface IOrderHistRepo
     {
 
-        public List<Order> GetAllOrders();
+        public List<Order> GetAllOrders(int custID);
     }
 
 

@@ -16,13 +16,13 @@ namespace PokeBL
         }
 
 
-        public List<Order> SearchOrderHist(string c_name)
+        public List<Order> SearchOrderHist(int custID)
         {
 
-            List<Order> listOfOrders = _orderrepo.GetAllOrders();
+            List<Order> listOfOrders = _orderrepo.GetAllOrders(custID);
 
             return listOfOrders
-                .Where(order => order._custName.Contains(c_name))
+                .Where(order => order._custID == custID)
                 .ToList();
 
 

@@ -5,7 +5,7 @@ namespace PokeDL
     public interface ISQLStoreHistory
     {
 
-        public List<StoreOrder> GetStoreOrder();
+        public List<StoreOrder> GetStoreOrder(int storeID);
     }
 
 

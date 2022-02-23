@@ -8,7 +8,9 @@ namespace PokeBL
 
         public List<Inventory> SearchInventory(int p_id);
 
-        //     public List<Inventory> GetAllInventory();
+        List<Inventory> GetAllInventoryByStoreID(int storeID);
+
+        List<Inventory> GetAllInventory();
     }
 
 

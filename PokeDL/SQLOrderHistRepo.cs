@@ -4,6 +4,13 @@ namespace PokeDL
 {
     public class OrderHistRepo : IOrderHistRepo
     {
+
+        private readonly string _connectionStrings;
+        public OrderHistRepo(string p_connectionStrings)
+        {
+
+            _connectionStrings = p_connectionStrings;
+        }
         public List<Order> GetAllOrders(int custID)
         {
 
@@ -13,7 +20,7 @@ namespace PokeDL
                                     where custID = @custID";
 
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
 
                 con.Open();

@@ -12,13 +12,13 @@ namespace PokeBL
             _storehist = s_storehsit;
         }
 
-        public List<StoreOrder> SearchStoreHistory(string s_name)
+        public List<StoreOrder> SearchStoreHistory(int storeID)
         {
 
-            List<StoreOrder> listStoreOrder = _storehist.GetStoreOrder();
+            List<StoreOrder> listStoreOrder = _storehist.GetStoreOrder(storeID);
 
             return listStoreOrder
-                .Where(order => order._storeName.Contains(s_name))
+                .Where(order => order._storeID == storeID)
                 .ToList();
         }
 

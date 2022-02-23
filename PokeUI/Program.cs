@@ -1,11 +1,34 @@
 ﻿// See https://aka.ms/new-console-template for more information
+global using Serilog;
+using Microsoft.Extensions.Configuration;
 using PokeBL;
 using PokeDL;
 using PokeUI;
 
 
+/************************** API stuff dotnet dev-certs https
+https://localhost:7203/swagger/index.html
+dotnet new webapi -o PokeApi creates the api
+dotnet tool install -g dotnet-aspnet-codegenerator
+Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+*/
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("./log/user.txt")
+    .CreateLogger();
+
+
 bool repeat = true;
 IMenu menu = new MainMenu();
+
+
+
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsetting.json")
+    .Build();
+
+string _connectionStrings = configuration.GetConnectionString("Reference2DB");
 
 /*
 *****Originally, I was thinking of creating a pet supplies store. Which may still be a good Idea
@@ -50,40 +73,55 @@ while (repeat)
     switch (ans)
     {
 
-        case "ProductsMenu":
-            menu = new ProductsMenu();
+        case "PlaceOrderMenu":
+            Log.Information("Entering the Place Order Menu");
+            menu = new PlaceOrderMenu(new CustomerBL(new SQLRepository(_connectionStrings)), new StoreFrontBL(new SQLStoreFrontRepo()));
             break;
 
+        // case "StoreFrontMenu":
+        //     menu = new StoreFrontMenu(new StoreFrontBL(new SQLStoreFrontRepo()));
+        //     break;
+
+        case "StoreFrontMenu":
+            menu = new StoreFrontMenu(new InventoryBL(new SQLInventory(_connectionStrings)), new OrderHistoryBL(new OrderHistRepo(_connectionStrings)), new StoreHistoryBL(new SQLStoreHistory()), new StoreFrontBL(new SQLStoreFrontRepo()));
+            break;
+
+
         case "CustomerAccount":
-            menu = new CustomerAccount(new CustomerBL(new Repository()));
+            Log.Information("Entering the Create Customer Account Menu");
+            menu = new CustomerAccount(new CustomerBL(new SQLRepository(_connectionStrings)));
             break;
 
         case "MainMenu":
+            Log.Information("Entering the Main Menu");
             menu = new MainMenu();
             break;
 
 
-        case "LeashMenu":
-            menu = new LeashMenu();
-            break;
-
-        case "CollarMenu":
-            menu = new CollarMenu();
-            break;
-
-        case "ToyMenu":
-            menu = new ToyMenu();
-            break;
-
-        case "TreatMenu":
-            menu = new TreatMenu();
-            break;
-
         case "SearchCustomerMenu":
-            menu = new SearchCustomerMenu(new CustomerBL(new Repository()));
+            Log.Information("Entering the Search Customer Menu");
+            menu = new SearchCustomerMenu(new CustomerBL(new SQLRepository(_connectionStrings)), new OrderBL(new SQLOrderRepository(_connectionStrings)));
             break;
+
+        case "SearchProductMenu":
+            Log.Information("Entering the Search Product Menu");
+            menu = new SearchProductMenu(new ProductBL(new SQLProductRepository(_connectionStrings)));
+            break;
+
+        case "StoreFrontProductMenu":
+            Log.Information("Entering the StoreFrontProductMenu");
+            menu = new StoreFrontProductMenu(new ProductBL(new SQLProductRepository(_connectionStrings)), new InventoryBL(new SQLInventory(_connectionStrings)), new OrderBL(new SQLOrderRepository(_connectionStrings)));
+            break;
+        // case "OrderMenu":
+        //     menu = new OrderMenu(new CustLeashesBL(new CustLeashesDL()));
+        //     break;
+
+        // case "CustomizeLeashMenu":
+        //     menu = new CustomizeLeashMenu();
+        //     break;
 
         default:
+            Log.Information("User did not enter a valid option");
             Console.WriteLine("Page does not exist");
             break;
     }

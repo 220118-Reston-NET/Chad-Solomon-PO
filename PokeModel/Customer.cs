@@ -4,7 +4,7 @@
     {
 
 
-        public int _custID; //{ get; set; }
+        public int _custID { get; set; }
         // public int CustID
         // {
         //     get { return _custID; }
@@ -96,6 +96,30 @@
 
         }
 
+        private string? _password;
+        public string? Password
+        {
+            get { return _password; }
+
+            set
+            {
+
+                if (value != "")
+                {
+
+                    _password = value;
+                }
+                else
+                {
+                    Console.WriteLine("Password must not be empty!");
+                    Console.WriteLine("Please press enter to continue");
+                    Console.ReadLine();
+
+                }
+            }
+
+        }
+
 
 
         // private List<Order> _custOrders;
@@ -150,7 +174,7 @@
 
         public override string ToString()
         {
-            return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}";
+            return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}\nPassword {Password}\n";
         }
 
 

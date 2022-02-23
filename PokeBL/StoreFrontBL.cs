@@ -6,7 +6,7 @@ namespace PokeBL
     The Business layer will essentially return your added custoemr i think.
     Also, we could add the function of assigning a random ID to the StoreFront or the StoreFronts order or the products
     */
-    public class StoreFrontBL : SQLStoreFrontRepo, IStoreFrontBL
+    public class StoreFrontBL : IStoreFrontBL  //SQLStoreFrontRepo
     {
         //Dependency Injection Pattern
         //- This is the main reason why we created interface first before the class
@@ -39,7 +39,7 @@ namespace PokeBL
             List<StoreFront> listOfStoreFront = _srepo.GetAllStoreFronts();
 
             return listOfStoreFront
-                .Where(store => store.StoreID == storeID)
+                .Where(store => store._storeID == storeID)
                 .ToList();
         }
 
@@ -55,6 +55,13 @@ namespace PokeBL
                     .ToList();
 
 
+        }
+
+        public List<StoreFront> GetAllStoreFronts()
+        {
+            List<StoreFront> listOfStoreFronts = new List<StoreFront>();
+
+            return _srepo.GetAllStoreFronts();
         }
     }
 }

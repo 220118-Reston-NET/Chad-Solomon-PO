@@ -88,6 +88,15 @@ namespace PokeModel
             }
         }
 
+        private DateTime _timeStamp;
+        public DateTime TimeStamp
+
+        {
+            get { return _timeStamp; }
+            set { _timeStamp = value; }
+        }
+
+
 
         // public Order()
         // {
@@ -106,7 +115,7 @@ namespace PokeModel
 
         public override string ToString()
         {
-            return $"Customer Name: {_custName}\nOrder ID: {_orderID}\nStore Location: {_storeID}\nProducts: {_listOfProducts}\nOrder Price: {TotalPrice}\n";
+            return $"Order ID: {_orderID}\nStore ID: {_storeID}\nOrder Price: {TotalPrice}\nTime Stamp: {TimeStamp}\n";
         }
 
 
